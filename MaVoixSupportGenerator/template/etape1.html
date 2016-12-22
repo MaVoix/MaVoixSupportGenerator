@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="starter-template text-center">
+    <h1>Photo #MAVOIX</h1>
+    <p class="lead">Soutenez <a href="http://www.mavoix.info">#MAVOIX</a> en personnalisant vos murs <b>FACEBOOK</b> et <b>TWITTER</b>. <br />Vous pourrez également générer un visuel de l'affiche.</p>
+	 
+    <p>&nbsp;</p>
+    <div class="appbox"> {#navigation}
+
+       <div class="alert alert-info text-left" role="alert"> <b>Vie privée</b><br />Votre photo sera traitée de manière anonyme et ne sera pas conservée sur notre serveur.</div>
+       
+      <p> Sélectionnez un fichier :</p>
+      <form action="index.php?page=sendfile" method="post" name="etape1" enctype="multipart/form-data">
+        <div class="input-group image-preview">
+          <input type="text" class="form-control image-preview-filename" disabled="disabled">
+          <input type="hidden" id="maxfilesize" value="{#maxfilesize}" />
+          <span class="input-group-btn">
+          <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span></button>
+          <div class="btn btn-default image-preview-input"> <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Parcourir</span>
+            <input type="file" accept="image/png, image/jpeg, image/gif" name="fichier"/>
+          </div>
+          </span> </div>
+        <p>&nbsp;</p>
+        <button type="submit" class="waiting-submit pull-right btn btn-primary btn-lg">Suite <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+        <p>&nbsp;</p>
+      </form>
+    </div>
+  </div>
+</div>
