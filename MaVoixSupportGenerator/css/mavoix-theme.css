@@ -1,5 +1,119 @@
 /* CSS Document */
+html {
+	font-family: sans-serif;
+	font-size: 10px;
+	height: 100%;
+}
+body {
+	font-family: "PT sans", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	background-color: #5a5a5a;
+	height: 100%;
+	color: #555555;
+	margin: 0;
+	padding: 0;
+}
+.text {
+	color: #555555;
+}
+img {
+	width: 100%;
+}
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus {
+	outline: 0;
+}
+.tooltip {
+	font-family: "PT sans", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.42857143;
+}
+.popover {
+	font-family: "PT sans", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.42857143;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: "PT sans", Helvetica, Arial, sans-serif;
+}
+h1, .h1 {
+	font-size: 24px;
+}
+.btn {
+	font-family: "PT sans", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+}
+.label {
+	font-family: "PT sans", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+a, a:hover, a:visited {
+	color: #000000;
+}
+a.btn-primary {
+	color: #ffffff;
+}
+.btn-primary {
+	background: #000000;
+	color: #ffffff;
+	border-color: #000000;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+	background: #000000;
+	color: #ffffff;
+	border-color: #000000;
+}
+.btn-primary:active, .btn-primary.active {
+	background: #000000;
+	color: #ffffff;
+	border-color: #000000;
+}
+/*****************************   header   ***************/
+.header {
+	background-color: #F2FF22;
+	padding: 10px;
+}
+.header h5 > div {
+	display: inline;
+	white-space: nowrap;
+}
+.logo {
+	width: 100%;
+	max-width: 200px;
+	margin-right: 20px;
+}
+/**************************** PAGE **********************/
+.page {
+	padding: 50px 0;
+	background-color: #ffffff;
+	width: 100%;
+}
+.page-content {
+	width: 80%;
+	max-width: 800px;
+	margin: auto;
+}
+/*************************** footer **************************/
 
-.container{
-	padding:0;
+footer {
+	padding : 25px 0;
+}
+footer .page-content {
+	color: #ffffff;
+}
+footer a, footer a:hover, footer a:visited {
+	color: #ffffff;
+	text-decoration: underline;
+}
+/******************* content *********************/
+.illustration {
+	width: 80%;
+	max-width: 250px;
+	margin: auto;
+	display: block;
 }

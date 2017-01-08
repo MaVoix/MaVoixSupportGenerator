@@ -26,7 +26,7 @@ if ( isset( $_GET[ "error" ] ) ) {
 	switch ( $_GET[ "error" ] ) {
 		case "emptyfile":
 			$aDataErreur[ "titre" ] = "Oops !";
-			$aDataErreur[ "message" ] = "Vous n'avez séléctionné de fichier.";
+			$aDataErreur[ "message" ] = "Vous n'avez pas séléctionné de fichier.";
 			break;
 		case "toolate":
 			$aDataErreur[ "titre" ] = "Oops !";

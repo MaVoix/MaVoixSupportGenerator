@@ -19,9 +19,22 @@ toastr.options = {
 }
 
 var $oObjCrop;
+
+$( window ).resize(function() {
+	//fix footer position
+	$('.page').css('min-height',$(window).height()-300);
+});
+
 $(document).ready(function(){
+	
+	//fix footer position
+	$('.page').css('min-height',$(window).height()-300);
+	
+	
 	var $body=$('body');
 	var $message=$('.erreur');
+	
+	
 	
 	$message.each(function(){
 		toastr[$(this).data("type")]($(this).find("p").html(), $(this).find("h3").html())
@@ -45,7 +58,7 @@ $(document).ready(function(){
 	if(el){
 		
 		var objPhotocrop = new Croppie(el, {
-			viewport: { width: 100, height: 100 },
+			viewport: { width: 100, height: 88 },
 			boundary: { width: 200, height: 200 },
 			showZoomer: true,
 			enableOrientation: true
@@ -80,5 +93,10 @@ $(document).ready(function(){
 			$('#photocrop-angle').attr('type','text');*/
 		},500);
 	}	
+	
+	
+	
+
+	
 	
 });

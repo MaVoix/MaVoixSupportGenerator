@@ -1,4 +1,4 @@
-- mettre dossier tmp en 777
+- créer un dossier /tmp (chmod 777)
 - régler les limitation dans config.php 
 - les scripts php sont tous dans /page
 - le script de génération d'image est generate.php (utilisation de la class SimpleImage)

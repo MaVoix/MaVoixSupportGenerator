@@ -3,6 +3,8 @@ $aDataPage = array();
 $sUrlReturn = "index.php?page=etape1&error=XXXXX";
 $nErreur = 1;
 
+//force le format
+$_POST[ "format" ]="facebook-profil";
 
 if ( !isset( $_POST[ "format" ] ) ||  trim($_POST[ "format" ] =="")) {
 	$sUrlReturn = "index.php?page=etape2&error=noformat";
