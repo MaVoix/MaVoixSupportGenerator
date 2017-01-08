@@ -3,7 +3,7 @@
 //variables de configuration ici ...
 $CONFIG=array();
 
-$CONFIG["version"]="6"; //incrémenter pour obliger le navigateur à recharger le js et le css
+$CONFIG["version"]="7"; //incrémenter pour obliger le navigateur à recharger le js et le css
 $CONFIG["page-defaut"]="etape1";
 $CONFIG["upload-path"]="tmp/"; // avec un slash à la fin
 $CONFIG["mime-type-limit"]= array('image/jpeg','image/png');
