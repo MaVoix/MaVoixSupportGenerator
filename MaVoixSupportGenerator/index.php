@@ -56,12 +56,8 @@ switch($_GET["page"]){
 if(!$bIsAJAX){
 	header('Content-type: text/html; charset=utf-8');
 	$aDataContent["version"]=getConfig("version");
-	
-	$scriptFolder = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on')) ? 'https://' : 'http://';
-    $scriptFolder .= $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']);    
-	
-	$aDataContent["url-server"]=$scriptFolder;
-	
+	$aDataContent["url-server"]=getConfig("url-server");
+
 	echo display("template/base.html",$aDataContent);
 }else{
 	//sinon on affiche juste le $aDataContent["body"]
