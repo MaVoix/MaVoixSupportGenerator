@@ -1,0 +1,19 @@
+
+<form action="index.php?page=generate" method="post"  enctype="multipart/form-data">
+  <div class="text-center">
+    <h3> Recadrage &amp; Rotation</h3>
+  </div>
+  <div id="photocrop-src" data-url="{#srcfile}"></div>
+  <div class="actions text-center " style="padding:25px 0;" >
+    <button class="photocrop-rotate btn btn-default"  type="button" data-deg="-90" >Rotation <span class="glyphicon glyphicon-repeat"></span></button>
+  </div>
+  <div id="photocrop"></div>
+  <a href="index.php?page=etape1" class="pull-left btn btn-default btn-lg"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+  <button type="submit" class="waiting-submit pull-right btn btn-primary btn-lg">Suite <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+  <input type="hidden" id="photocrop-x1" name="photocrop-x1" value="1" >
+  <input type="hidden" id="photocrop-y1" name="photocrop-y1" value="1" >
+  <input type="hidden" id="photocrop-x2" name="photocrop-x2" value="1" >
+  <input type="hidden" id="photocrop-y2" name="photocrop-y2" value="1" >
+  <input type="hidden" id="photocrop-zoom" name="photocrop-zoom" value="1" >
+  <input type="hidden" id="photocrop-angle" name="photocrop-angle" value="1" >
+</form>
