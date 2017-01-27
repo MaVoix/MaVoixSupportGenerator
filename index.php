@@ -56,9 +56,8 @@ switch($_GET["page"]){
 if(!$bIsAJAX){
 	header('Content-type: text/html; charset=utf-8');
 	$aDataContent["version"]=getConfig("version");
+	$aDataContent["url-server"]=getConfig("url-server");
 
-    $aDataContent["url-server"]=getConfig("url-server");
-	
 	echo display("template/base.html",$aDataContent);
 }else{
 	//sinon on affiche juste le $aDataContent["body"]
