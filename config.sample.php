@@ -4,7 +4,7 @@
 $CONFIG=array();
 
 $CONFIG["url-server"]="http://url-of-the-app.net";
-$CONFIG["page-defaut"]="etape1";
+$CONFIG["page-default"]="etape1";
 $CONFIG["tmp-folder"]="tmp/"; // with "/" at the end
 $CONFIG["mime-type-limit"]= array('image/jpeg','image/png');
 $CONFIG["max-size"]= 10; // in Mb
