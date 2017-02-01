@@ -58,3 +58,13 @@ function folderSize ($dir)
     }
     return $size;
 }
+
+function debug($sMsg){
+    global $CONFIG;
+    if($CONFIG["debug"]){
+        $sFile=$CONFIG["tmp-folder"]."log-".session_id().".txt";
+        $fp=fopen($sFile,"a");
+        fwrite($fp,date("d-m-Y").";".date("H:i:s").";".$sMsg."\n");
+        fclose($fp);
+    }
+}

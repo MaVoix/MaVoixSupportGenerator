@@ -1,28 +1,36 @@
 
-<p class="lead">Soutenez <a href="http://www.mavoix.info">#MAVOIX</a> en personnalisant votre photo de profil.</p>
+<p class="lead">Soutenez <a href="http://www.mavoix.info">#MAVOIX</a> en personnalisant les pages et profils de vos réseaux sociaux.</p>
 <div class="row">
-  <div class="col-xs-12 col-sm-6">Ce module vous permet de générer et de télécharger votre photo de profil aux couleurs de MAVOIX. <br />
+  <div class="col-xs-12 text-center">Ce module vous permet de générer et de télécharger des visuels aux couleurs de MAVOIX. <br />
     <h3>N'hésitez pas à essayer ! </h3>
     <p>&nbsp;</p>
     <div class="alert alert-danger text-center"><i class="fa fa-user-secret  fa-lg"></i> &nbsp; Votre photo sera traitée de manière anonyme et nous ne conservons aucun historique.</div>
     <p>&nbsp;</p>
   </div>
-  <div class="col-xs-12 col-sm-6"> <img src="img/illustration.jpg" class="illustration"></div>
+  <!--<div class="col-xs-12 col-sm-6"> <img src="img/illustration.jpg" class="illustration"></div>-->
 </div>
 <div >
-  <p> Sélectionnez une photo :</p>
-  <form action="index.php?page=sendfile" method="post" name="etape1" enctype="multipart/form-data">
-    <div class="input-group image-preview">
-      <input type="text" class="form-control image-preview-filename" disabled="disabled">
-      <input type="hidden" id="maxfilesize" value="{#maxfilesize}" />
-      <span class="input-group-btn">
-      <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span></button>
-      <div class="btn btn-default image-preview-input"> <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Parcourir</span>
-        <input type="file" accept="image/png, image/jpeg, image/gif" name="fichier"/>
+
+  <form action="index.php?page=select" method="post" name="etape1" enctype="multipart/form-data">
+      <div class="row">
+          <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+              <p> Sélectionnez un type de visuel :</p>
+              <select name="format" class="form-control jsSelectPreview">
+              <option value="">Choisir ...</option>
+              {#list}
+          </select>
+              <div class="divZonePreview">
+                  <div class="jsZonePreview"></div>
+              </div>
+          </div>
+          <div class="col-xs-offset-3 col-xs-6">&nbsp;</div>
       </div>
-      </span> </div>
-    <p>&nbsp;</p>
-    <button type="submit" class="waiting-submit pull-right btn btn-primary btn-lg">Suite <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
-    <p>&nbsp;</p>
+
+
+    <p>&nbsp;&nbsp;</p>
+      <div class="text-center">
+    <button type="submit" class="waiting-submit  btn btn-primary btn-lg">Suite <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+      </div>
+    <p>&nbsp;&nbsp;</p>
   </form>
 </div>

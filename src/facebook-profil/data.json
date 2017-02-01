@@ -1,0 +1,26 @@
+{
+    "title": "Photo de profil Facebook",
+    "thumb": "thumb.png",
+    "width": 320,
+    "height": 320,
+    "format": "png",
+    "layers": {
+        "1": {
+            "type": "image",
+            "src": "background.png",
+            "x": 0,
+            "y": 0,
+            "opacity": "1"
+        },
+        "2": {
+            "type": "input",
+            "type_input": "upload",
+            "label": "Votre photo",
+            "x": 32,
+            "y": 32,
+            "height": 224,
+            "width": 256,
+            "opacity": "1"
+        }
+    }
+}

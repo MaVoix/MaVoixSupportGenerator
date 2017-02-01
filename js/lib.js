@@ -33,16 +33,34 @@ $(document).ready(function(){
 	
 	var $body=$('body');
 	var $message=$('.erreur');
-	
-	
+
+
 	
 	$message.each(function(){
 		toastr[$(this).data("type")]($(this).find("p").html(), $(this).find("h3").html())
-	})
+	});
 	
 	$('form').on('submit',function(){
 		$('.waiting-submit').html('Patientez <span class="fa fa-spinner fa-spin"></span>');
-	})
+	});
+
+    $(".jsSelectPreview").on('change',function(){
+        var url=$(this).find(":selected").data("thumb");
+        var $preview=$(".jsZonePreview");
+       // $preview.html("");
+        if(url){
+            $preview.css('background-image','url('+url+'?v='+(Math.random()*1000) +')');
+       /*     var img = $('<img/>', {
+                id: 'dynamic',
+                height:100,
+                width:'auto',
+                src: url+'?v='+(Math.random()*1000)
+            });
+
+            $preview.append(img);*/
+        }
+
+    });
 	
 	//maintien la session active et conserve les fichiers toutes les 2 min
 	setInterval(function(){
@@ -58,7 +76,7 @@ $(document).ready(function(){
 	if(el){
 		
 		var objPhotocrop = new Croppie(el, {
-			viewport: { width: 100, height: 88 },
+			viewport: { width:  $img.data('widthcrop'), height: $img.data('heightcrop') },
 			boundary: { width: 200, height: 200 },
 			showZoomer: true,
 			enableOrientation: true
@@ -92,8 +110,7 @@ $(document).ready(function(){
 			$('#photocrop-zoom').attr('type','text');
 			$('#photocrop-angle').attr('type','text');*/
 		},500);
-	}	
-	
+	}
 	
 	
 

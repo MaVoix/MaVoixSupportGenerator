@@ -2,32 +2,84 @@
 
 $aDataPage = array();
 
-/** NAVIGATION **/
-$aDataNavigation = array();
-$aDataNavigation[ "etape1-disabled" ] = "";
-$aDataNavigation[ "etape2-disabled" ] = "";
-$aDataNavigation[ "etape3-disabled" ] = "";
 
-$aDataNavigation[ "etape1-css" ] = "btn-default";
-$aDataNavigation[ "etape2-css" ] = "btn-default";
-$aDataNavigation[ "etape3-css" ] = "btn-primary";
-
-$aDataNavigation[ "etape1-href" ] = "index.php?page=etape1";
-$aDataNavigation[ "etape2-href" ] = "index.php?page=etape2";
-$aDataNavigation[ "etape3-href" ] = "index.php?page=etape3";
-$aDataPage[ "navigation" ] = display( "template/block/etapes-navigation.html", $aDataNavigation );
+/** RETOUR D'ERREUR DE GENERATION **/
+if (isset($_GET["error"])) {
 
 
+    $aDataErreur = array();
+    switch ($_GET["error"]) {
+        case "noformat":
+            $aDataErreur["titre"] = "Oops !";
+            $aDataErreur["message"] = "Merci de préciser un format.";
+            break;
 
-$aName = explode( "@@", $_SESSION[ "uploadfile" ] );
-$aDataPage[ "download-name" ] = preg_replace( '/\\.[^.\\s]{3,4}$/', '', $aName[ 1 ] ) . "-MAVOIX.png";
-$aDataPage[ "outputfile" ] = $_SESSION[ "uploadfile" ] . ".output.png?rd=" . time();
+        default:
+            //message par defaut
+            $aDataErreur["titre"] = "Oops !";
+            $aDataErreur["message"] = "Une erreur s'est produite pendant la génération du fichier.";
+            break;
 
-//si le fichier n'existe plus... RELOAD
-if ( !file_exists( $_SESSION[ "uploadfile" ] . ".output.png" ) ) {
-	$sUrlReturn = "index.php?page=etape1&error=toolate";
-	header( 'Location: ' . $sUrlReturn );
+    }
+    $aDataErreur["type"] = "error";
+    $aDataContent["erreur"] = display("template/block/erreur.html", $aDataErreur);
 }
+
+
 /*** AFFICHAGE **/
 
-$aDataContent[ "body" ] = display( "template/etape3.html", $aDataPage );
+/** RATIO CROP */
+$sPath = "src/" . $_SESSION["format"] . "/";
+$sContent = file_get_contents($sPath . "data.json");
+$JSON = json_decode($sContent, true);
+
+$aLayers = $JSON["layers"];
+ksort($aLayers);
+$aDataPage["heightcrop"] = 0;
+$aDataPage["widthcrop"] = 0;
+
+foreach ($aLayers as $nLayer => $aLayer) {
+
+    if (!isset($aLayer["type"])) {
+        $aLayer["type"] = "";
+    }
+    if (!isset($aLayer["label"])) {
+        $aLayer["label"] = "";
+    }
+    if (!isset($aLayer["placeholder"])) {
+        $aLayer["placeholder"] = "";
+    }
+    if (!isset($aLayer["default_value"])) {
+        $aLayer["default_value"] = "";
+    }
+    if (!isset($aLayer["x"])) {
+        $aLayer["x"] = "0";
+    }
+    if (!isset($aLayer["y"])) {
+        $aLayer["y"] = "0";
+    }
+    if (!isset($aLayer["opacity"])) {
+        $aLayer["opacity"] = "1";
+    }
+
+    switch ($aLayer["type"]) {
+        case "input";
+            switch ($aLayer["type_input"]) {
+                case "upload" :
+                    $nRatio = $aLayer["width"] / $aLayer["height"];
+                    $aDataPage["widthcrop"] = round(100);
+                    $aDataPage["heightcrop"] = round(100 / $nRatio);
+                    break;
+                default:
+                    break;
+            }
+            break;
+        default:
+            break;
+    }
+
+}
+
+
+$aDataPage["srcfile"] = $_SESSION["tmpfile"] . ".crop.png?rd=" . time();
+$aDataContent["body"] = display("template/etape3.html", $aDataPage);
