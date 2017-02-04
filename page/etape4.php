@@ -3,7 +3,11 @@
 $aDataPage = array();
 
 $aName = explode("@@", $_SESSION["tmpfile"]);
-$aDataPage["download-name"] = preg_replace('/\\.[^.\\s]{3,4}$/', '', $aName[1]) . ".png";
+if(substr( $aName[1] ,0,3)=="src"){
+    $aDataPage["download-name"] = $_SESSION["format"]."-".date("dmY").".png";
+}else{
+    $aDataPage["download-name"] = preg_replace('/\\.[^.\\s]{3,4}$/', '', $aName[1]) . ".png";
+}
 $aDataPage["outputfile"] = $_SESSION["tmpfile"] . ".output.png?rd=" . time();
 
 //si le fichier n'existe plus... RELOAD

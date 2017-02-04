@@ -17,7 +17,7 @@ $img = imagecreatetruecolor($JSON["width"], $JSON["height"]);
 imagepng($img, $_SESSION["tmpfile"] . ".output.png");
 
 
-$img = new abeautifulsite\ SimpleImage($_SESSION["tmpfile"] . ".output.png");
+$img = new claviska\ SimpleImage($_SESSION["tmpfile"] . ".output.png");
 
 
 foreach ($aLayers as $nLayer => $aLayer) {
@@ -59,13 +59,13 @@ foreach ($aLayers as $nLayer => $aLayer) {
             }
             $sText = $aLayer["text"];
             if (!isset($aLayer["anchor"])) $aLayer["anchor"] = "center";
-            $img->text($sText, "./" . $sPath . $aLayer["fontfile"], $aLayer["fontsize"], $aLayer["color"], $aLayer["anchor"], $aLayer["x"], $aLayer["y"]);
+            $img->text($sText,array("fontFile"=> $sPath . $aLayer["fontfile"],"size"=> $aLayer["fontsize"],"color"=> $aLayer["color"],"anchor"=> $aLayer["anchor"],"xOffset"=>$aLayer["x"],"yOffset"=>$aLayer["y"] ) );
             debug("LAYER $nLayer : text : ".$sText);
             break;
         case "script" :
             $sText=file_get_contents(getConfig("url-server")."/".$sPath.$aLayer["path"]);
             if (!isset($aLayer["anchor"])) $aLayer["anchor"] = "center";
-            $img->text($sText, "./" . $sPath . $aLayer["fontfile"], $aLayer["fontsize"], $aLayer["color"], $aLayer["anchor"], $aLayer["x"], $aLayer["y"]);
+            $img->text($sText,array("fontFile"=> $sPath . $aLayer["fontfile"],"size"=> $aLayer["fontsize"],"color"=> $aLayer["color"],"anchor"=> $aLayer["anchor"],"xOffset"=>$aLayer["x"],"yOffset"=>$aLayer["y"] ) );
             debug("LAYER $nLayer : script output : ".$sText);
             break;
         case "input";
@@ -75,15 +75,15 @@ foreach ($aLayers as $nLayer => $aLayer) {
                 case "text" :
                     $sText = $_SESSION["textFormLayer" . $nLayer];
                     if (!isset($aLayer["anchor"])) $aLayer["anchor"] = "center";
-                    $img->text($sText, "./" . $sPath . $aLayer["fontfile"], $aLayer["fontsize"], $aLayer["color"], $aLayer["anchor"], $aLayer["x"], $aLayer["y"]);
+                    $img->text($sText,array("fontFile"=> $sPath . $aLayer["fontfile"],"size"=> $aLayer["fontsize"],"color"=> $aLayer["color"],"anchor"=> $aLayer["anchor"],"xOffset"=>$aLayer["x"],"yOffset"=>$aLayer["y"] ) );
                     debug("LAYER $nLayer : text_input : ".$sText);
                     break;
 
                 case "upload" :
 
                     //recadrage carré sur la photo originale
-                    $imgUpload = new abeautifulsite\ SimpleImage($_SESSION["tmpfile"]);
-                    $imgSmall = new abeautifulsite\ SimpleImage($_SESSION["tmpfile"] . ".crop.png");
+                    $imgUpload = new claviska\ SimpleImage($_SESSION["tmpfile"]);
+                    $imgSmall = new claviska\ SimpleImage($_SESSION["tmpfile"] . ".crop.png");
 
 
                     //if tool croping info
@@ -94,13 +94,13 @@ foreach ($aLayers as $nLayer => $aLayer) {
                         $imgSmall->rotate($_POST["photocrop-angle"]);
 
                         //ratio
-                        $nRatioX = $imgUpload->get_width() / ($imgSmall->get_width() * doubleval($_POST["photocrop-zoom"]));
-                        $nRatioY = $imgUpload->get_height() / ($imgSmall->get_height() * doubleval($_POST["photocrop-zoom"]));
+                        $nRatioX = $imgUpload->getWidth() / ($imgSmall->getWidth() * doubleval($_POST["photocrop-zoom"]));
+                        $nRatioY = $imgUpload->getHeight() / ($imgSmall->getHeight() * doubleval($_POST["photocrop-zoom"]));
 
                         $croped = $imgUpload->crop($_POST["photocrop-x1"] * $nRatioX, $_POST["photocrop-y1"] * $nRatioY, $_POST["photocrop-x2"] * $nRatioX, $_POST["photocrop-y2"] * $nRatioY);
 
 
-                        $croped->fit_to_width($aLayer["width"]);
+                        $croped->fitToWidth($aLayer["width"]);
                         $img->overlay($croped, 'top left', $aLayer["opacity"], $aLayer["x"], $aLayer["y"]);
                     }else{
                         $img->overlay( $imgUpload, 'top left', $aLayer["opacity"], $aLayer["x"], $aLayer["y"]);
@@ -119,7 +119,7 @@ foreach ($aLayers as $nLayer => $aLayer) {
     }
 
 }
-$img->save($_SESSION["tmpfile"] . ".output.png", 100);
+$img->toFile($_SESSION["tmpfile"] . ".output.png",  'image/png');
 debug("SAVE ".$_SESSION["tmpfile"] . ".output.png");
 $sUrlReturn = "index.php?page=etape4&prev=" . $etapePrev;
 

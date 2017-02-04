@@ -99,15 +99,15 @@ foreach ($aLayers as $nLayer => $aLayer) {
                                     $nErreur++;
                                 } else {
                                     //format
-                                    $img = new abeautifulsite\ SimpleImage($uploadfile);
-                                    if ($img->get_width() > getConfig("max-width") || $img->get_height() > getConfig("max-height")) {
+                                    $img = new claviska\ SimpleImage($uploadfile);
+                                    if ($img->getWidth() > getConfig("max-width") || $img->getHeight() > getConfig("max-height")) {
                                         $sUrlReturn = "index.php?page=etape1&error=bigimage";
                                         $nErreur++;
                                     } else {
                                         $_SESSION["tmpfile"] = $uploadfile;
                                         //genere une image plus petite pour le CROP
-                                        $img->fit_to_width(500);
-                                        $img->save($_SESSION["tmpfile"] . ".crop.png", 100);
+                                        $img->fitToWidth(500);
+                                        $img->toFile($_SESSION["tmpfile"] . ".crop.png", 'image/png');
                                         debug("create file preview for croping " . $_SESSION["tmpfile"] . ".crop.png");
 
                                     }
