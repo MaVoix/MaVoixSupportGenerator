@@ -46,6 +46,7 @@ foreach ($aLayers as $nLayer => $aLayer) {
         $aLayer["opacity"] = "1";
     }
 
+
     debug("LAYER $nLayer : ".$aLayer["type"]);
     switch ($aLayer["type"]) {
         case "image" :
@@ -73,26 +74,32 @@ foreach ($aLayers as $nLayer => $aLayer) {
                     break;
 
                 case "upload" :
-                    $etapePrev = "etape3";
+
                     //recadrage carré sur la photo originale
                     $imgUpload = new abeautifulsite\ SimpleImage($_SESSION["tmpfile"]);
                     $imgSmall = new abeautifulsite\ SimpleImage($_SESSION["tmpfile"] . ".crop.png");
 
-                    //rotatiion
-                    $imgUpload->rotate($_POST["photocrop-angle"]);
-                    $imgSmall->rotate($_POST["photocrop-angle"]);
 
-                    //ratio
-                    $nRatioX = $imgUpload->get_width() / ($imgSmall->get_width() * doubleval($_POST["photocrop-zoom"]));
-                    $nRatioY = $imgUpload->get_height() / ($imgSmall->get_height() * doubleval($_POST["photocrop-zoom"]));
+                    //if tool croping info
+                    if (isset($_POST["photocrop-angle"])) {
+                        $etapePrev = "etape3";
+                        //rotate
+                        $imgUpload->rotate($_POST["photocrop-angle"]);
+                        $imgSmall->rotate($_POST["photocrop-angle"]);
 
-                    $croped = $imgUpload->crop($_POST["photocrop-x1"] * $nRatioX, $_POST["photocrop-y1"] * $nRatioY, $_POST["photocrop-x2"] * $nRatioX, $_POST["photocrop-y2"] * $nRatioY);
+                        //ratio
+                        $nRatioX = $imgUpload->get_width() / ($imgSmall->get_width() * doubleval($_POST["photocrop-zoom"]));
+                        $nRatioY = $imgUpload->get_height() / ($imgSmall->get_height() * doubleval($_POST["photocrop-zoom"]));
+
+                        $croped = $imgUpload->crop($_POST["photocrop-x1"] * $nRatioX, $_POST["photocrop-y1"] * $nRatioY, $_POST["photocrop-x2"] * $nRatioX, $_POST["photocrop-y2"] * $nRatioY);
 
 
-                    $croped->fit_to_width($aLayer["width"]);
+                        $croped->fit_to_width($aLayer["width"]);
+                        $img->overlay($croped, 'top left', $aLayer["opacity"], $aLayer["x"], $aLayer["y"]);
+                    }else{
+                        $img->overlay( $imgUpload, 'top left', $aLayer["opacity"], $aLayer["x"], $aLayer["y"]);
+                    }
 
-
-                    $img->overlay($croped, 'top left', $aLayer["opacity"], $aLayer["x"], $aLayer["y"]);
                     debug("LAYER $nLayer : overlay upload");
                     break;
 

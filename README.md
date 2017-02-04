@@ -99,7 +99,7 @@ All layers are process in order of the number at the first key .
 }
  ```
  
- #### input => text
+ #### text :
   ```
  "1": {
       "type": "text",
@@ -141,6 +141,7 @@ All layers are process in order of the number at the first key .
        "type": "input",
        "type_input": "upload",
        "label": "Label of field",
+       "default_value" : "filename-in-template-folder-of-file-used-if-no-picture-uploaded.jpg"
        "x": 0,
        "y": 0,
        "height": 500,

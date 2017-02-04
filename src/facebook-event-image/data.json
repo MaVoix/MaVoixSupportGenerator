@@ -15,6 +15,7 @@
     "2": {
       "type": "input",
       "type_input": "upload",
+      "default_value": "mavoix-default.png",
       "label": "Illustration",
       "x": 327,
       "y": 13,
