@@ -112,6 +112,20 @@ All layers are process in order of the number at the first key .
       "color": "#000000"
     },
   ```
+  
+   #### script :
+ ```
+   "1": {
+        "type": "script",
+        "path": "path-of-script.php (call by URL and display text content)",     
+        "anchor":"center",
+        "x": 0,
+        "y": 0,
+        "fontfile": "MyFont.ttf",
+        "fontsize": 14,
+        "color": "#000000"
+      },
+ ```
 
 #### input => text
  ```

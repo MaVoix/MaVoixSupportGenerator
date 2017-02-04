@@ -73,6 +73,16 @@
       "x": 443,
       "y": 49,
       "opacity": "1"
+    },
+    "8": {
+      "type": "script",
+      "path": "script.php",
+      "anchor":"left",
+      "x": 10,
+      "y": 10,
+      "fontfile": "MyriadPro-Semibold.otf",
+      "fontsize": 60,
+      "color": "#000000"
     }
   }
 }

@@ -62,6 +62,12 @@ foreach ($aLayers as $nLayer => $aLayer) {
             $img->text($sText, "./" . $sPath . $aLayer["fontfile"], $aLayer["fontsize"], $aLayer["color"], $aLayer["anchor"], $aLayer["x"], $aLayer["y"]);
             debug("LAYER $nLayer : text : ".$sText);
             break;
+        case "script" :
+            $sText=file_get_contents(getConfig("url-server")."/".$sPath.$aLayer["path"]);
+            if (!isset($aLayer["anchor"])) $aLayer["anchor"] = "center";
+            $img->text($sText, "./" . $sPath . $aLayer["fontfile"], $aLayer["fontsize"], $aLayer["color"], $aLayer["anchor"], $aLayer["x"], $aLayer["y"]);
+            debug("LAYER $nLayer : script output : ".$sText);
+            break;
         case "input";
 
             switch ($aLayer["type_input"]) {
